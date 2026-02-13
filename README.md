@@ -3,6 +3,8 @@ A JavaScript-style Promise library for Lua
 
 See https://ezhik.jp/promise.lua for more information and a playground.
 
+Check it out on LuaRocks: https://luarocks.org/modules/ezhik/promise-dot-lua
+
 # The API
 I tried to cover most of the API I saw on [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise):
 * Constructor
