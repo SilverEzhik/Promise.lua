@@ -5,6 +5,9 @@ on:
       - "v*"
   pull_request: # Will test a local install without uploading to luarocks.org
 
+permissions:
+  contents: write
+
 jobs:
   luarocks-release:
     runs-on: ubuntu-latest
