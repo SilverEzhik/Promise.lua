@@ -1,0 +1,25 @@
+name: LuaRocks release
+on:
+  push:
+    tags: # Will upload to luarocks.org when a tag is pushed
+      - "v*"
+  pull_request: # Will test a local install without uploading to luarocks.org
+
+jobs:
+  luarocks-release:
+    runs-on: ubuntu-latest
+    name: LuaRocks upload
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: LuaRocks Upload
+        uses: nvim-neorocks/luarocks-tag-release@v7
+        env:
+          LUAROCKS_API_KEY: ${{ secrets.LUAROCKS_API_KEY }}
+        with:
+          name: promise-dot-lua
+      - name: GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ github.ref_name }}" --generate-notes
